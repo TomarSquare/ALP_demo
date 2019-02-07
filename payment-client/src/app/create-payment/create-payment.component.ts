@@ -9,7 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class CreatePaymentComponent implements OnInit {
 
-  private debitAcs: string [];
+  private debitAcs: string ;//[];
+  payment = {};
 
   constructor(private  creditAcService:  CreditAcService) { }
 
@@ -20,16 +21,20 @@ export class CreatePaymentComponent implements OnInit {
   public  getDebitAc(){
     console.log("method called")
     this.creditAcService.getDebitAc().subscribe(
-      data => {
-        this.debitAcs = data as string [];	 // FILL THE ARRAY WITH DATA.
-        //console.log(this.debitAcs[0]);
+      response => {
+        this.debitAcs = response as string;//[];	 // FILL THE ARRAY WITH DATA.
+        console.log(this.debitAcs);//[0]);
         console.log("printing data");
-        console.log(data);
+        console.log(response.title);
       },
       (err: HttpErrorResponse) => {
         console.log (err.message);
       }
     );
 
-}
+  }
+
+  public createPayment(){
+    console.log(this.payment);
+  }
 }

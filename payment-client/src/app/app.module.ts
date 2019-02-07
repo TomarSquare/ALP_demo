@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { PaymentListComponent } from './payment-list/payment-list.component';
 import { CreatePaymentComponent } from './create-payment/create-payment.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { ReviewPaymentComponent } from './review-payment/review-payment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     HomeComponent,
     PaymentListComponent,
     CreatePaymentComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    ReviewPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
       { path : '', component: HomeComponent},
       { path : 'payment-list', component: PaymentListComponent},
       { path : 'create-payment', component: CreatePaymentComponent},
-      { path : 'payment-success', component: OrderSuccessComponent}
+      { path : 'payment-success', component: OrderSuccessComponent},
+      { path : 'review-success', component: ReviewPaymentComponent}
     ]),
     HttpClientModule
   ],

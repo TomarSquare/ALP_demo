@@ -2,22 +2,22 @@
 <form>
   <div class="form-group">
     <label for="debit_ac">Debit from</label>
-    <select id="debit_ac" class="form-control">
-      <option value=""></option>
+    <select id="debit_ac" class="form-control" > <!--[(ngModel)]="payment.debit-->
+      <option value="8907-0987-6789">8907-0987-6789</option>
     </select>
   </div>
   <div class="form-group">
     <label for="credit_ac">Credit from</label>
-    <select id="credit_ac" class="form-control">
-      <option value=""></option>
+    <select id="credit_ac" class="form-control" ><!--[(ngModel)]="payment.credit"-->
+      <option value="1672-9862-7564">1672-9862-7564</option>
     </select>
   </div>
   <div class="form-group">
-    <label for="amount">Amount</label>
+    <!--<label for="amount" #amount="ngModel" name="amount" [(ngModel)]="payment.amount">Amount</label>
     <div class="input-group-prepend">
       <span class="input-group-text">$</span>
       <input id="amount" type="number" class="form-control">
-    </div>
+    </div>-->
   </div>
-  <button class="btn btn-primary">Review</button>
+  <button class="btn btn-primary" (click)="createPayment()">Review</button>
 </form>
