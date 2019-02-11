@@ -6,6 +6,7 @@ import org.payment.list.dto.PaymentDetails;
 import org.payment.list.repository.PaymentListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +19,14 @@ public class PaymentListController {
 	@Autowired
 	PaymentListRepository repository;
 	
+	@CrossOrigin
 	@GetMapping(value="/list", produces="application/json")
 	public List<PaymentDetails> getData(){
 
 		return repository.findAll();
 	}
 	
+	@CrossOrigin
 	@GetMapping(value="/save")
 	public String saveData(){
 		PaymentDetails details = new PaymentDetails();
