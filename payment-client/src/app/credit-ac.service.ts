@@ -9,6 +9,6 @@ export class CreditAcService {
 
   constructor(private _http: HttpClient) {}
     getDebitAc(): Observable<any>{
-      return this._http.get('https://jsonplaceholder.typicode.com/posts/1'); 
+      return this._http.get('http://localhost:8083/debitac/getAll'); 
     }
 }

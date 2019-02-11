@@ -27,10 +27,10 @@ export class CreatePaymentComponent implements OnInit {
     console.log("method called")
     this.creditAcService.getDebitAc().subscribe(
       response => {
-        //this.debitAcs = response as string;//[];	 // FILL THE ARRAY WITH DATA.
-        //console.log(this.debitAcs);//[0]);
+        this.debitAcs = response as string;//[];	 // FILL THE ARRAY WITH DATA.
+        console.log(this.debitAcs[0]);
         console.log("printing data");
-        console.log(response.title);
+        console.log(response);
       },
       (err: HttpErrorResponse) => {
         console.log (err.message);
