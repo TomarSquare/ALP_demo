@@ -21,7 +21,7 @@ public class PaymentListController {
 	@GetMapping(value="/list", produces="application/json")
 	public List<PaymentDetails> getData(){
 
-		return repository.getPaymentList();
+		return repository.findAll();
 	}
 	
 	@GetMapping(value="/save")

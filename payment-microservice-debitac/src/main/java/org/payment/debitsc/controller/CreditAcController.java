@@ -1,6 +1,9 @@
 package org.payment.debitsc.controller;
 
+import java.util.List;
+
 import org.payment.debitsc.dto.CreditAccount;
+import org.payment.debitsc.dto.DebitAccount;
 import org.payment.debitsc.repository.CreditAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,8 +21,13 @@ public class CreditAcController {
 	
 	@GetMapping(value="/ac/{id}")
 	public CreditAccount getData(@PathVariable Integer id){
-		
+
 		return repository.getCreditAcById(id);
+	}
+	
+	@GetMapping(value="/getAll")
+	public List<CreditAccount> getAll(){
+		return repository.findAll();
 	}
 
 }
