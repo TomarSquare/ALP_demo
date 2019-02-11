@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface PaymentListRepository extends JpaRepository<PaymentDetails, Integer> {
-	@Query("SELECT debitAccount,creditAccount,amount,reason,executionDate "
+	@Query("SELECT id,debitAccount,creditAccount,amount,reason,executionDate "
 	        + "FROM payment_list" )
 	List<PaymentDetails> getPaymentList();
 }
