@@ -1,5 +1,5 @@
-<ngb-tabset>
-  <ngb-tab title="Step 1">
+<ngb-tabset #t="ngbTabset">
+  <ngb-tab title="Step 1" [disabled]="this.setp1Tab" id="step1">
     <ng-template ngbTabContent>
       <div class="row">
         <div class="col-md-12">
@@ -11,45 +11,29 @@
       <form>
         <div class="row">
           <div class="col-md-6">
-            <!--<div class="form-group">
-              <label for="exampleInputBenificiary">Benificiary Name</label>
-              <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Benificiary Name">
-              <small id="emailHelp" class="form-text text-muted">Required.</small>
-            </div>-->
             <div class="form-group">
               <label for="credit_ac">Credit from</label>
               <select id="credit_ac" class="form-control">
-                <!--[(ngModel)]="payment.credit"-->
                 <option value="1672-9862-7564">1672-9862-7564</option>
               </select>
             </div>
-            <!--<div class="form-group">
-              <label for="amount" #amount="ngModel" name="amount" [(ngModel)]="payment.amount">Amount</label>
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
-                  <input id="amount" type="number" class="form-control">
-                </div>
-            </div>-->
             <div class="form-group">
               <label for="exampleInputBenificiary">Reason for Payment</label>
-              <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Benificiary Name">
-              <small id="emailHelp" class="form-text text-muted">Required.</small>
+              <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Reason" [(ngModel)]="reason" name="reason">
             </div>
           </div>
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputBenificiary">Amount</label>
-                  <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Benificiary Name">
-                  <small id="emailHelp" class="form-text text-muted">Required.</small>
+                  <label for="exampleInputBenificiary">Amount*</label>
+                  <input type="number" class="form-control" id="exampleInputBenificiary" placeholder="Enter Amount" [(ngModel)]="amount" name="amount">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputBenificiary">Currency</label>
-                  <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Benificiary Name">
-                  <small id="emailHelp" class="form-text text-muted">Required.</small>
+                  <label for="exampleInputBenificiary">Currency*</label>
+                  <input type="email" class="form-control" id="exampleInputBenificiary" required placeholder="Enter Curency" [(ngModel)]="currency" name="currency">
                 </div>
               </div>
             </div>
@@ -58,17 +42,9 @@
                 <div class="form-group">
                   <label for="debit_ac">Debit from</label>
                   <select id="debit_ac" class="form-control">
-                    <!--[(ngModel)]="payment.debit-->
                     <option value="8907-0987-6789">8907-0987-6789</option>
                   </select>
                 </div>
-                <!--<div class="form-group">
-                  <label for="debit_ac">Device Type</label><br>
-                  <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                  </label>
-                </div>-->
               </div>
             </div>
           </div>
@@ -78,13 +54,13 @@
             <button class="btn btn-primary">Cancel</button>
           </div>
           <div class="col-md-6">
-            <button class="btn btn-primary" (click)="createPayment()">Review</button>
+            <button class="btn btn-primary" (click)="createPayment(); t.select('step2')">Review</button>
           </div>
         </div>
       </form>
     </ng-template>
   </ngb-tab>
-  <ngb-tab title="Step 2">
+  <ngb-tab title="Step 2" [disabled]="this.setp2Tab" id="step2">
     <ng-template ngbTabContent>
       <br>
       <h2>Review Payment Details</h2>
@@ -108,14 +84,14 @@
           </div>
           <div>
             <label for=""><b>Reason for payment</b></label><br>
-            <p>This is very condidentials, why should i tell you :P</p>
+            <p>{{reason}}</p>
             <br>
           </div>
         </div>
         <div class="col-md-6">
           <div>
             <label for=""><b>Amount</b></label><br>
-            <p>Dollar 3480</p>
+            <p>{{currency}} {{amount}}</p>
             <br>
           </div>
           <div>
@@ -137,24 +113,20 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <button class="btn btn-primary">Back</button>
+          <button class="btn btn-primary" (click)="this.setp1Tab=false;this.setp2Tab=true;this.step3Tab=false;t.select('step1')">Back</button>
         </div>
         <div class="col-md-6">
-          <button class="btn btn-primary">Confirm</button>
+          <button class="btn btn-primary" (click)="this.setp1Tab=false;this.setp2Tab=false;this.step3Tab=true;t.select('step3')">Confirm</button>
         </div>
       </div>
       <br><br><br>
     </ng-template>
   </ngb-tab>
-  <ngb-tab title="Step 3">
+  <ngb-tab title="Step 3" [disabled]="this.step3Tab" id="step3">
     <ng-template ngbTabContent>
-      <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla
-        facilisi. Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu,
-        congue et odio. Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices
-        et. Sed diam urna, egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus
-        faucibus nisl enim, nec tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci
-        varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem
-        aliquet ultricies in eget neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
+      <br/>
+      <h2>Payment Created Successfully</h2>
+      <br/>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>

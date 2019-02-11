@@ -11,8 +11,13 @@ export class CreatePaymentComponent implements OnInit {
 
   private debitAcs: string ;//[];
   payment = {};
+  reason: string;
+  setp1Tab: boolean = false;
+  setp2Tab: boolean = true;
+  step3Tab: boolean = true;
+  selectedTab = 0;
 
-  constructor(private  creditAcService:  CreditAcService) { }
+  constructor(private  creditAcService:  CreditAcService) {  }
 
   ngOnInit() {
     this.getDebitAc();
@@ -22,8 +27,8 @@ export class CreatePaymentComponent implements OnInit {
     console.log("method called")
     this.creditAcService.getDebitAc().subscribe(
       response => {
-        this.debitAcs = response as string;//[];	 // FILL THE ARRAY WITH DATA.
-        console.log(this.debitAcs);//[0]);
+        //this.debitAcs = response as string;//[];	 // FILL THE ARRAY WITH DATA.
+        //console.log(this.debitAcs);//[0]);
         console.log("printing data");
         console.log(response.title);
       },
@@ -34,7 +39,10 @@ export class CreatePaymentComponent implements OnInit {
 
   }
 
-  public createPayment(){
-    console.log(this.payment);
+  public createPayment(t){
+    console.log("hello");
+    this.setp1Tab=true;
+    this.setp2Tab=false;
+    this.step3Tab=false;
   }
 }
