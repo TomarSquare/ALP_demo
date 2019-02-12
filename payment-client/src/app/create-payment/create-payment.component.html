@@ -8,42 +8,48 @@
           <hr>
         </div>
       </div>
-      <form>
+      <form [formGroup]="createForm">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label for="credit_ac">Credit from</label>
-              <select id="credit_ac" class="form-control">
-                <option value="1672-9862-7564">1672-9862-7564</option>
+              <select id="credit_ac" class="form-control" [formControl]="creditAccount">
+                  <option *ngFor="let creditAcc of creditAcs" value="{{creditAcc.accountNumber}}">
+                    <span>{{creditAcc.accountNumber}}</span>
+                    <span> {{creditAcc.accountType}}</span>
+                  </option>
               </select>
             </div>
             <div class="form-group">
               <label for="exampleInputBenificiary">Reason for Payment</label>
-              <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Reason" [(ngModel)]="reason" name="reason">
+              <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Reason" [(ngModel)]="reason" name="reason" [formControl]="reason">
             </div>
           </div>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="debit_ac">Debit from</label>
+                  <select id="debit_ac" class="form-control" [formControl]="debitAccount">
+                    <option *ngFor="let debitAcc of debitAcs" value="{{debitAcc.accountNumber}}">
+                      <span>{{debitAcc.accountNumber}}</span>
+                      <span> {{debitAcc.accountType}}</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputBenificiary">Amount*</label>
-                  <input type="number" class="form-control" id="exampleInputBenificiary" placeholder="Enter Amount" [(ngModel)]="amount" name="amount">
+                  <input type="number" class="form-control" id="exampleInputBenificiary" placeholder="Enter Amount" [(ngModel)]="amount" name="amount" [formControl]="amount">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputBenificiary">Currency*</label>
-                  <input type="email" class="form-control" id="exampleInputBenificiary" required placeholder="Enter Curency" [(ngModel)]="currency" name="currency">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label for="debit_ac">Debit from</label>
-                  <select id="debit_ac" class="form-control">
-                    <option value="8907-0987-6789">8907-0987-6789</option>
-                  </select>
+                  <input class="form-control" id="exampleInputBenificiary" required placeholder="Enter Curency" [(ngModel)]="currency" name="currency" [formControl]="currency">
                 </div>
               </div>
             </div>
@@ -91,11 +97,11 @@
           </div>
           <div>
             <label for=""><b>Debit Account</b></label><br>
-            <p>2345678987623456789</p>
+            <p>{{debitAccount.value}}</p>
             <br>
           </div>
           <div>
-            <label for=""><b>Tyope of account</b></label><br>
+            <label for=""><b>Type of account</b></label><br>
             <p>Single payment</p>
             <br>
           </div>
@@ -111,7 +117,7 @@
           <button class="btn btn-primary" (click)="this.setp1Tab=false;this.setp2Tab=true;this.step3Tab=false;t.select('step1')">Back</button>
         </div>
         <div class="col-md-6">
-          <button class="btn btn-primary" (click)="this.setp1Tab=false;this.setp2Tab=false;this.step3Tab=true;t.select('step3')">Confirm</button>
+          <button class="btn btn-primary" (click)="this.setp1Tab=false;this.setp2Tab=false;this.step3Tab=true;t.select('step3');postData()">Confirm</button>
         </div>
       </div>
       <br><br><br>

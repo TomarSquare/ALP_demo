@@ -13,7 +13,7 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
 import { CreatePaymentComponent } from './create-payment/create-payment.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ReviewPaymentComponent } from './review-payment/review-payment.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,8 @@ import { FormsModule } from '@angular/forms';
       { path : 'review-success', component: ReviewPaymentComponent}
     ]),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     CreditAcService
