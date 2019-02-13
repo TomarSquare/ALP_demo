@@ -1,0 +1,133 @@
+<ngb-tabset #t="ngbTabset">
+  <ngb-tab title="Step 1" [disabled]="this.setp1Tab" id="step1">
+    <ng-template ngbTabContent>
+      <div class="row">
+        <div class="col-md-12">
+          <br>
+          <h2>Enter Payment Details</h2>
+          <hr>
+        </div>
+      </div>
+      <form [formGroup]="createForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="credit_ac">Credit from</label>
+              <select id="credit_ac" class="form-control" formControlName="creditAccount">
+                  <option *ngFor="let creditAcc of creditAcs" value="{{creditAcc.accountNumber}}">
+                    <span>{{creditAcc.accountNumber}}</span>
+                    <span> {{creditAcc.accountType}}</span>
+                  </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputBenificiary">Reason for Payment</label>
+              <input type="email" class="form-control" id="exampleInputBenificiary" placeholder="Enter Reason" [(ngModel)]="reason" name="reason" formControlName="reason">
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="debit_ac">Debit from</label>
+                  <select id="debit_ac" class="form-control" formControlName="debitAccount">
+                    <option *ngFor="let debitAcc of debitAcs" value="{{debitAcc.accountNumber}}">
+                      <span>{{debitAcc.accountNumber}}</span>
+                      <span> {{debitAcc.accountType}}</span>
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputBenificiary">Amount*</label>
+                  <input type="number" class="form-control" id="exampleInputBenificiary" placeholder="Enter Amount" [(ngModel)]="amount" name="amount" formControlName="amount">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="exampleInputBenificiary">Currency*</label>
+                  <input class="form-control" id="exampleInputBenificiary" required placeholder="Enter Curency" [(ngModel)]="currency" name="currency" formControlName="currency">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-primary">Cancel</button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary" (click)="createPayment(); t.select('step2')">Review</button>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Step 2" [disabled]="this.setp2Tab" id="step2">
+    <ng-template ngbTabContent>
+      <br>
+      <h2>Review Payment Details</h2>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <label for=""><b>Benificiary Name</b></label><br>
+            <p>Swati Mhatre</p>
+            <br>
+          </div>
+          <div>
+            <label for=""><b>Bank of the Benificiary</b></label><br>
+            <p>ICICI Bank</p>
+            <br>
+          </div>
+          <div>
+            <label for=""><b>Reason for payment</b></label><br>
+            <p>{{reason}}</p>
+            <br>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div>
+            <label for=""><b>Amount</b></label><br>
+            <p>{{currency}} {{amount}}</p>
+            <br>
+          </div>
+          <div>
+            <label for=""><b>Debit Account</b></label><br>
+            <p>{{debitAccount.value}}</p>
+            <br>
+          </div>
+          <div>
+            <label for=""><b>Type of account</b></label><br>
+            <p>Single payment</p>
+            <br>
+          </div>
+          <div>
+            <label for=""><b>Execution Date</b></label><br>
+            <p>16 July 1988</p>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-primary" (click)="this.setp1Tab=false;this.setp2Tab=true;this.step3Tab=false;t.select('step1')">Back</button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-primary" (click)="this.setp1Tab=false;this.setp2Tab=false;this.step3Tab=true;t.select('step3');postData(createForm.value)">Confirm</button>
+        </div>
+      </div>
+      <br><br><br>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Step 3" [disabled]="this.step3Tab" id="step3">
+    <ng-template ngbTabContent>
+      <br/>
+      <h2>Payment Created Successfully</h2>
+      <br/>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
