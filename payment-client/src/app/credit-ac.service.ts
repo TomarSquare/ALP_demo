@@ -11,10 +11,12 @@ export class CreditAcService {
 
   constructor(private _http: HttpClient) {}
     getDebitAc(): Observable<any>{
+      //return this._http.get<IDebitAcc[]>('http://13.76.158.55:80/debitac/getAll'); 
       return this._http.get<IDebitAcc[]>('http://localhost:8083/debitac/getAll'); 
     }
 
     getCreditAc(): Observable<any>{
+      //return this._http.get<ICreditAcc[]>('http://13.76.158.55:80/creditac/getAll');
       return this._http.get<ICreditAcc[]>('http://localhost:8083/creditac/getAll');
     }
 }

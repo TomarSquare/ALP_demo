@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentListComponent implements OnInit {
 
-  private paymentLst = [];
+  public paymentLst = [];
 
   constructor(private paymentListService: PaymentList) { }
 
