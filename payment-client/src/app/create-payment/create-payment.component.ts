@@ -70,7 +70,8 @@ export class CreatePaymentComponent implements OnInit {
   }
 
   public createPayment(t){
-    console.log("hello");
+    console.log("debitAccount",this.debitAccount);
+    console.log("executionDate",this.executionDate);
     this.setp1Tab=true;
     this.setp2Tab=false;
     this.step3Tab=false;
