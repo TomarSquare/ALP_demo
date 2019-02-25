@@ -40,7 +40,7 @@
           <td>{{payment.executionDate.year}}-{{payment.executionDate.month}}-{{payment.executionDate.day}}</td>
           <td>
             <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="" data-original-title="Edit"><img src="../assets/images/baseline-edit-24px.svg"/></i></a>
-            <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="" data-original-title="Delete"><img src="../assets/images/baseline-delete-24px.svg"></i></a>
+            <a class="delete" data-toggle="modal" (click)="deleteData(payment.id)"><i class="material-icons" data-toggle="tooltip" title="" data-original-title="Delete"><img src="../assets/images/baseline-delete-24px.svg"></i></a>
           </td>
         </tr>
       </tbody>

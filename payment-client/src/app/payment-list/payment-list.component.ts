@@ -33,4 +33,19 @@ export class PaymentListComponent implements OnInit {
 
   }
 
+  public deleteData(id){
+    console.log("delete called for ",id);
+    this.paymentListService.deletePayment(id).subscribe(
+      response => {
+        console.log('Data deleted!!');
+        this.getPaymentList();
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err.message);
+        this.getPaymentList();
+      }
+    );
+    console.log('after delete');
+  }
+
 }
